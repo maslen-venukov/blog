@@ -1,5 +1,8 @@
 .stories
   margin-bottom: 30px
+  & > *
+    &:not(:last-child)
+      margin-bottom: 30px
   &__list
     display: grid
     grid-template-columns: repeat(4, 1fr)
@@ -7,15 +10,34 @@
   &__form
     height: 75px
     display: flex
+    align-items: center
     background-color: #121212
     box-shadow: 0 15px 25px rgba(#000, .45)
     border-radius: 5px
-    margin-top: 30px
   &__input
+    width: 100%
+    height: 100%
     font-size: 15px
     color: #fff
     background-color: transparent
-    padding-left: 30px
+    padding: 0 30px
+    margin-right: 15px
+    &::placeholder
+      color: #d2d2d2
+  &__file,
+  &__add
+    flex-shrink: 0
+    width: 45px
+    height: 45px
+    border-radius: 50%
+  &__file
+    background: url(../../img/photo.svg) center / cover no-repeat
+    margin-right: 15px
+    cursor: pointer
+    input
+      display: none
+  &__add
+    background: url(../../img/send.svg) center / cover no-repeat
 
 .story
   position: relative
@@ -23,6 +45,7 @@
   height: 0
   padding-bottom: 140%
   box-shadow: 0 5px 15px rgba(#000, .2)
+  cursor: pointer
   &::after
     content: ''
     position: absolute
@@ -53,3 +76,15 @@
   &__date
     bottom: 12px
     text-align: right
+
+.stories-modal
+  &__body
+    width: 100%
+    max-width: 430px
+    height: 590px
+    border-radius: 5px
+    box-shadow: 0 10px 30px rgba(#000, .25)
+    overflow: hidden
+  &__media
+    width: 100%
+    height: 100%

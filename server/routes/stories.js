@@ -6,7 +6,7 @@ import upload from '../middlewares/upload.js'
 
 const router = Router()
 
-router.post('/', create)
+router.post('/', auth, upload.single('media'), create)
 router.get('/', read)
 
 export default router

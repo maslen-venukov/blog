@@ -9,6 +9,7 @@ import storiesRouter from './routes/stories.js'
 dotenv.config()
 
 const PORT = process.env.PORT || 5000
+const DB_URL = process.env.DB_URL
 
 const dbConfig = {
   useNewUrlParser: true,
@@ -28,8 +29,12 @@ app.use('/api/users', usersRouter)
 app.use('/api/stories', storiesRouter)
 
 const start = async () => {
-  await mongoose.connect(process.env.DB_URL, dbConfig, () => console.log('MongoDB connected'))
-  app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+  try {
+    await mongoose.connect(DB_URL, dbConfig).then(() => console.log('MongoDB connected'))
+    app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 start()

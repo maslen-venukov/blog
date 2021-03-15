@@ -1,10 +1,17 @@
 import React from 'react'
 
-const NewStory = () => {
+const NewStory = ({ onAdd }) => {
+  const handleSubmit = e => {
+    e.preventDefault()
+    onAdd(e)
+  }
+
   return (
-    <form className="stories__form">
+    <form onSubmit={handleSubmit} className="stories__form">
       <input type="text" name="title" placeholder="Напишите что-нибудь" className="stories__input" />
-      <input type="file" name="media" className="stories__file" />
+      <label className="stories__file">
+        <input type="file" name="media" accept="image/*, video/*" />
+      </label>
       <button className="stories__add" aria-label="Добавить историю" />
     </form>
   )

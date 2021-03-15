@@ -32,12 +32,16 @@ export const register = async (req, res) => {
       password: hashedPassword
     })
 
-    const token = `Bearer ${jwt.sign({ id: user._id, login }, JWT_KEY, { expiresIn: '1h' })}`
+    const token = `Bearer ${jwt.sign({ id: user._id, login, role: user.role }, JWT_KEY, { expiresIn: '1h' })}`
 
     await user.save()
     return res.json({
       token,
-      user: { id: user._id, login },
+      user: {
+        id: user._id,
+        login,
+        role: user.role
+      },
       message: 'Пользователь успешно зарегистрирован'
     })
   } catch (e) {
@@ -61,7 +65,7 @@ export const login = async (req, res) => {
     if(!isMatch)
       return res.status(400).json({ message: 'Неверный пароль' })
 
-    const token = `Bearer ${jwt.sign({ id: user._id, login }, JWT_KEY, { expiresIn: '1h' })}`
+    const token = `Bearer ${jwt.sign({ id: user._id, login, role: user.role }, JWT_KEY, { expiresIn: '1h' })}`
 
     return res.json({
       token,
@@ -82,7 +86,7 @@ export const auth = async (req, res) => {
     const { id, login } = req.user
     const user = await User.findById(id)
 
-    const token = `Bearer ${jwt.sign({ id, login }, JWT_KEY, { expiresIn: '1h' })}`
+    const token = `Bearer ${jwt.sign({ id: user._id, login, role: user.role }, JWT_KEY, { expiresIn: '1h' })}`
 
     return res.json({
       token,
