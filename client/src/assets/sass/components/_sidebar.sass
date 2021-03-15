@@ -1,0 +1,79 @@
+.sidebar
+  grid-row: 1 / span 2
+  background-color: $dark
+  box-shadow: 5px 0 15px rgba(5, 5, 5, .1)
+  text-align: center
+  & > *
+    padding: 30px 0
+    &:not(:first-child)
+      padding: 30px 20px
+    &:not(:last-child)
+      position: relative
+      &::after
+        content: ''
+        position: absolute
+        bottom: 0
+        left: 20px
+        right: 20px
+        height: 1px
+        background-color: #1c1c1c
+  &__head
+    padding-top: 0
+  &__img
+    width: 100%
+    height: 180px
+    img
+      width: 100%
+      height: 100%
+  &__avatar
+    position: relative
+    width: 100px
+    height: 100px
+    border: 2px solid #fff
+    border-radius: 50%
+    overflow: hidden
+    margin: -50px auto 20px
+  &__name
+    font-size: 18px
+    font-weight: 400
+  &__blog
+    font-size: 14px
+    font-weight: 300
+    margin-bottom: 15px
+  &__info
+    padding: 0 20px
+  &__actions
+    display: flex
+    justify-content: space-between
+  &__works,
+  &__contact
+    display: inline-block
+    width: 120px
+    height: 40px
+    font-size: 12px
+    font-weight: 500
+    color: #fff
+    border-radius: 25px
+  &__works
+    background-color: $red
+  &__contact
+    background-color: $blue
+
+.social
+  &__list
+    display: flex
+    justify-content: center
+    font-size: 0
+  &__item
+    &:not(:last-child)
+      margin-right: 15px
+  &__link
+    display: block
+    width: 25px
+    height: 25px
+    &--instagram
+      background: url(../../img/instagram.svg) center / cover no-repeat
+    &--vk
+      background: url(../../img/vk.svg) center / cover no-repeat
+    &--pinterest
+      background: url(../../img/pinterest.svg) center / cover no-repeat

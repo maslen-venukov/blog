@@ -1,0 +1,72 @@
+.header
+  display: flex
+  justify-content: space-between
+  background-color: #0d0d0d
+  box-shadow: 0 5px 22px rgba(#000, .25)
+
+.nav
+  width: 100%
+  font-size: 11px
+  text-transform: uppercase
+  &__list
+    height: 100%
+    display: flex
+  &__item
+    position: relative
+    height: 100%
+    &--profile
+      margin-left: auto
+    &:hover
+      .nav__link
+        background-color: $blue
+      .sublist
+        opacity: 1
+        visibility: visible
+  &__link
+    display: flex
+    align-items: center
+    height: 100%
+    padding: 0 15px
+    cursor: pointer
+    transition: background-color .2s
+    &--sublist
+      position: relative
+      padding-right: 30px
+      &::after
+        content: ''
+        position: absolute
+        top: calc(50% - 1px)
+        right: 10px
+        transform: translateY(-50%)
+        width: 10px
+        height: 6px
+        background: url(../../img/angle-down.svg) center / cover no-repeat
+
+.sublist
+  opacity: 0
+  visibility: hidden
+  position: absolute
+  top: 100%
+  left: 0
+  z-index: 100
+  width: 165px
+  background-color: $blue
+  padding: 5px 0
+  border-radius: 0 0 5px 5px
+  overflow: hidden
+  transition: opacity .2s, visibility .2s
+  &__link
+    display: block
+    padding: 5px 12px
+    &:hover
+      background-color: darken($blue, 5%)
+
+.search
+  &__input
+    width: 200px
+    height: 100%
+    color: #fff
+    font-size: 12px
+    background-color: $dark
+    box-shadow: -7px 1px 10px rgba(#000, .3)
+    padding: 0 15px
